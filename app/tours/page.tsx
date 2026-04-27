@@ -1,14 +1,12 @@
 import { createClient } from "@/lib/supabase/server";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, ArrowRight, Star, Clock } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 export const revalidate = 60; // Revalidate every minute
 
 export default async function ToursPage() {
   const supabase = await createClient();
-  const { data: tours, error } = await supabase
+  const { data: tours } = await supabase
     .from("tours")
     .select("*")
     .eq("is_active", true)
@@ -21,10 +19,12 @@ export default async function ToursPage() {
       {/* Premium Header */}
       <div className="relative py-32 overflow-hidden flex items-center justify-center text-center">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=2000" 
             alt="Dubai Skyline" 
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
         </div>
@@ -47,7 +47,9 @@ export default async function ToursPage() {
           <div className="text-center py-24 bg-card/70 backdrop-blur-2xl rounded-[3rem] border border-border/50 shadow-2xl shadow-primary/5">
             <h3 className="text-2xl font-bold mb-2">No tours available right now</h3>
             <p className="text-muted-foreground">Check back later or contact our support team.</p>
-            <Button className="mt-8 rounded-2xl px-8 h-14 font-bold shadow-lg shadow-primary/20">Refresh Page</Button>
+            <Link href="/tours">
+              <button className="mt-8 rounded-2xl px-8 h-14 font-bold bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">Refresh Page</button>
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -58,10 +60,11 @@ export default async function ToursPage() {
               >
                 <div className="aspect-[4/3] relative overflow-hidden">
                   {tour.image_urls && tour.image_urls.length > 0 ? (
-                    <img
+                    <Image
                       src={tour.image_urls[0]}
                       alt={tour.title}
-                      className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
@@ -93,14 +96,14 @@ export default async function ToursPage() {
                       <span className="text-muted-foreground text-xs ml-1">/ person</span>
                     </div>
                     <Link href={`/tours/${tour.id}`}>
-                      <Button className="rounded-2xl h-12 w-12 p-0 hover:w-32 transition-all duration-300 relative overflow-hidden group/btn shadow-lg shadow-primary/20">
+                      <button className="rounded-2xl h-12 w-12 bg-primary text-primary-foreground flex items-center justify-center hover:w-32 transition-all duration-300 relative overflow-hidden group/btn shadow-lg shadow-primary/20">
                         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group-hover/btn:opacity-0 transition-opacity">
                           <ArrowRight className="h-5 w-5" />
                         </span>
                         <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap px-4 font-bold">
                           Details
                         </span>
-                      </Button>
+                      </button>
                     </Link>
                   </div>
                 </div>

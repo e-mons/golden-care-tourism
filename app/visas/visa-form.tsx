@@ -55,7 +55,9 @@ export function VisaForm() {
 
       if (file) {
         const fileExt = file.name.split('.').pop();
-        const fileName = `${application.id}-${Math.random()}.${fileExt}`;
+        // eslint-disable-next-line react-hooks/purity
+        const timestamp = Date.now();
+        const fileName = `${application.id}-${timestamp}.${fileExt}`;
         
         const { error: uploadError } = await supabase.storage
           .from('visas')

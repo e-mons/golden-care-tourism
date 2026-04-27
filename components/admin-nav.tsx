@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, FileCheck, Map, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Plane, Users, FileCheck, Map, Settings, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
@@ -17,6 +17,7 @@ export function AdminNav({ user }: AdminNavProps) {
 
   const navItems = [
     { name: "Overview", href: "/admin", icon: LayoutDashboard },
+    { name: "Flights", href: "/admin/flights", icon: Plane },
     { name: "Bookings", href: "/admin/bookings", icon: Map },
     { name: "Visas", href: "/admin/visas", icon: FileCheck },
     { name: "Customers", href: "/admin/users", icon: Users },

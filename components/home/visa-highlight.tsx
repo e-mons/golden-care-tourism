@@ -45,7 +45,7 @@ export default function VisaHighlight() {
               UAE Visa Processing <br /> Reimagined
             </h2>
             <p className="text-base md:text-lg text-white/80 mb-10 font-light max-w-lg leading-relaxed">
-              Skip the complexity. Whether it's a 30-day visit or a long-term residency, our AI-assisted platform handles everything from validation to submission.
+              Skip the complexity. Whether it&apos;s a 30-day visit or a long-term residency, our AI-assisted platform handles everything from validation to submission.
             </p>
 
             <div className="space-y-6 mb-12">

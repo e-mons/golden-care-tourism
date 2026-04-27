@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { Mail, Send, Phone, MessageSquare } from "lucide-react";
 
 export default function CTASection() {
@@ -49,10 +50,11 @@ export default function CTASection() {
               >
                 <div className="flex flex-col gap-6 mb-8">
                   <div className="relative h-20 w-64 overflow-hidden">
-                    <img 
+                    <Image 
                       src="/images/logo.png" 
                       alt="Golden Care Tourism" 
-                      className="w-full h-full object-contain brightness-0 invert"
+                      fill
+                      className="object-contain brightness-0 invert"
                     />
                   </div>
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md w-fit">
@@ -65,12 +67,12 @@ export default function CTASection() {
                   className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-[1.2]"
                   style={{ fontFamily: "var(--font-playfair), serif" }}
                 >
-                  Let's craft your <br />
+                  Let&apos;s craft your <br />
                   <span className="text-primary italic">Golden Memory</span>
                 </h2>
 
                 <p className="text-white/70 text-lg md:text-xl mb-12 font-light leading-relaxed max-w-lg">
-                  Whether it's a dream desert safari or a complex visa application, our consultants are ready to make it seamless.
+                  Whether it&apos;s a dream desert safari or a complex visa application, our consultants are ready to make it seamless.
                 </p>
 
                 <div className="flex flex-wrap gap-6">

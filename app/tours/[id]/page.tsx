@@ -1,10 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import BookingWidget from "./booking-widget";
-import { MapPin, Info, Star, ShieldCheck, Clock, Users, ChevronRight } from "lucide-react";
+import { MapPin, Star, ShieldCheck, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const revalidate = 60;
 
@@ -28,7 +27,7 @@ export default async function TourDetailsPage(
   }
 
   // Fetch future slots
-  const { data: slots, error: slotsError } = await supabase
+  const { data: slots } = await supabase
     .from("tour_slots")
     .select("*")
     .eq("tour_id", id)
@@ -44,10 +43,12 @@ export default async function TourDetailsPage(
     <main className="min-h-screen bg-background">
       {/* Cinematic Hero */}
       <section className="relative h-[70vh] w-full overflow-hidden">
-        <img 
+        <Image 
           src={mainImage} 
           alt={tour.title} 
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         
@@ -122,8 +123,13 @@ export default async function TourDetailsPage(
                   <h2 className="text-3xl font-bold">Visual Journey</h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {tour.image_urls.slice(1, 4).map((url: string, i: number) => (
-                      <div key={i} className="aspect-square rounded-3xl overflow-hidden border border-border/50">
-                        <img src={url} alt={`Gallery ${i}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                      <div key={i} className="aspect-square rounded-3xl overflow-hidden border border-border/50 relative">
+                        <Image 
+                          src={url} 
+                          alt={`Gallery ${i}`} 
+                          fill
+                          className="object-cover hover:scale-110 transition-transform duration-500" 
+                        />
                       </div>
                     ))}
                   </div>

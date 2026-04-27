@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Handshake, DollarSign, TrendingUp, ShieldCheck, ArrowRight, CheckCircle2, Star } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 const steps = [
   {
@@ -22,7 +20,6 @@ const steps = [
 export default function AffiliateLandingPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="relative pt-48 pb-32 overflow-hidden bg-primary">
@@ -143,7 +140,6 @@ export default function AffiliateLandingPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Camera, ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const images = [
   {
@@ -107,10 +108,11 @@ export default function GalleryGrid() {
             >
               <Link href={`/tours?category=${img.category === "Nature" ? "Desert Safari" : img.category === "Architecture" ? "City Tours" : img.category === "Resorts" ? "City Tours" : img.category}`} className="block h-full w-full">
                 {/* Image */}
-                <img
+                <Image
                   src={img.url}
                   alt={img.title}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                 />
                 
                 {/* Overlays */}

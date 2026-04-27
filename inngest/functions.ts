@@ -1,6 +1,18 @@
 import { inngest } from "./client";
 import { createClient } from "@/lib/supabase/server";
 
+interface BookingDetails {
+  profiles: {
+    email: string;
+    full_name: string;
+  };
+  tour_slots: {
+    tours: {
+      title: string;
+    };
+  };
+}
+
 export const sendBookingConfirmation = inngest.createFunction(
   { id: "send-booking-confirmation", triggers: [{ event: "booking/created" }] },
   async ({ event, step }) => {
@@ -24,7 +36,8 @@ export const sendBookingConfirmation = inngest.createFunction(
     // Step 2: Send Email (Mocked)
     const emailResult = await step.run("send-email", async () => {
       // In production, integrate Resend or SendGrid here
-      console.log(`[Email Sent] Confirmation to ${(bookingDetails as any).profiles?.email} for ${(bookingDetails as any).tour_slots?.tours?.title}`);
+      const details = bookingDetails as unknown as BookingDetails;
+      console.log(`[Email Sent] Confirmation to ${details.profiles?.email} for ${details.tour_slots?.tours?.title}`);
       return { success: true, deliveredAt: new Date().toISOString() };
     });
 

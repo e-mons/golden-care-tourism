@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ShieldCheck, Loader2, Plane, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage({
   searchParams,
@@ -113,10 +114,12 @@ export default function LoginPage({
         {/* Image Side */}
         <div className="hidden lg:block w-1/2 relative p-6">
           <div className="w-full h-full relative overflow-hidden rounded-[3rem] shadow-2xl">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=2000" 
               alt="Dubai Marina" 
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
             />
             <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -133,8 +136,14 @@ export default function LoginPage({
                   &quot;The journey of a thousand miles begins with a single step.&quot;
                 </h2>
                 <div className="flex items-center gap-4 bg-black/20 backdrop-blur-md p-4 rounded-3xl w-fit border border-white/10">
-                  <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Avatar" />
+                  <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white relative">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" 
+                      alt="Avatar" 
+                      width={48}
+                      height={48}
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <p className="font-bold text-sm">Ahmed Hassan</p>

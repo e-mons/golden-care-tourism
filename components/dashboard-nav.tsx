@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Ticket, FileText, User, LogOut } from "lucide-react";
+import { LayoutDashboard, Ticket, Plane, FileText, User, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
@@ -18,6 +18,7 @@ export function DashboardNav({ user }: DashboardNavProps) {
   const navItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Bookings", href: "/dashboard/bookings", icon: Ticket },
+    { name: "Flights", href: "/dashboard/flights", icon: Plane },
     { name: "Visas", href: "/dashboard/visas", icon: FileText },
     { name: "Profile", href: "/dashboard/profile", icon: User },
   ];

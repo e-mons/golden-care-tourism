@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, User, ArrowRight, MessageCircle, Clock, ChevronRight } from "lucide-react";
+import { ArrowRight, MessageCircle, Clock, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const posts = [
   {
@@ -82,10 +82,11 @@ export default function TravelBlog() {
               className="group flex flex-col h-full"
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] mb-8 shadow-lg group-hover:shadow-2xl transition-all duration-700">
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                 />
                 
                 {/* Overlay with info */}
@@ -99,8 +100,8 @@ export default function TravelBlog() {
                 
                 <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full border border-white/30 overflow-hidden">
-                      <img src={`https://i.pravatar.cc/150?u=${post.author}`} alt={post.author} className="w-full h-full object-cover" />
+                    <div className="h-10 w-10 rounded-full border border-white/30 bg-primary/20 flex items-center justify-center text-[10px] font-black">
+                      {post.author.split(' ').map(n => n[0]).join('')}
                     </div>
                     <span className="text-xs font-bold">{post.author}</span>
                   </div>

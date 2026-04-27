@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, Zap, Globe, Heart, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -74,7 +75,7 @@ export default function ServicesSection() {
             </h2>
           </div>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
-            We don't just plan trips — we engineer unforgettable moments backed by technology, trust, and precision.
+            We don&apos;t just plan trips — we engineer unforgettable moments backed by technology, trust, and precision.
           </p>
         </div>
 
@@ -133,7 +134,7 @@ export default function ServicesSection() {
               transition={{ duration: 0.8 }}
               className="h-full rounded-[3rem] overflow-hidden relative group shadow-2xl"
             >
-              <img src="https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&q=80&w=1200" alt="Luxury Yacht Experience" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+              <Image src="https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&q=80&w=1200" alt="Luxury Yacht Experience" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8">
                 <span className="text-white/70 text-xs font-bold uppercase tracking-widest">Featured</span>
@@ -151,7 +152,7 @@ export default function ServicesSection() {
                 transition={{ delay: 0.1, duration: 0.8 }}
                 className="h-full rounded-[3rem] overflow-hidden relative group shadow-2xl"
               >
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=1200" alt="Open Road Travel" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                <Image src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=1200" alt="Open Road Travel" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8">
                   <span className="text-white/70 text-xs font-bold uppercase tracking-widest">Popular</span>
@@ -169,7 +170,7 @@ export default function ServicesSection() {
                   transition={{ delay: 0.2, duration: 0.8 }}
                   className="h-full rounded-[3rem] overflow-hidden relative group shadow-2xl"
                 >
-                  <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" alt="Dubai Skyline" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <Image src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" alt="Dubai Skyline" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6">
                     <h4 className="text-white text-xl font-bold" style={{ fontFamily: "var(--font-playfair), serif" }}>City Tours</h4>
@@ -184,7 +185,7 @@ export default function ServicesSection() {
                   transition={{ delay: 0.3, duration: 0.8 }}
                   className="h-full rounded-[3rem] overflow-hidden relative group shadow-2xl"
                 >
-                  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" alt="Beach Relaxation" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <Image src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" alt="Beach Relaxation" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6">
                     <h4 className="text-white text-xl font-bold" style={{ fontFamily: "var(--font-playfair), serif" }}>Beach & Resorts</h4>

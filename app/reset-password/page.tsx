@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Lock, Loader2, Plane } from "lucide-react";
+import Image from "next/image";
 
 export default function ResetPasswordPage() {
   const [error, setError] = useState<string | null>(null);
@@ -94,10 +95,12 @@ export default function ResetPasswordPage() {
         {/* Image Side */}
         <div className="hidden lg:block w-1/2 relative p-6">
           <div className="w-full h-full relative overflow-hidden rounded-[3rem] shadow-2xl">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=2000" 
               alt="Dubai Night" 
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
             />
             <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />

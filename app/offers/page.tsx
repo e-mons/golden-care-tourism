@@ -1,8 +1,6 @@
-import { motion } from "framer-motion";
-import { Tag, Timer, Zap, Sparkles, ArrowRight } from "lucide-react";
+import { Timer, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import Image from "next/image";
 
 const offers = [
   {
@@ -34,15 +32,13 @@ const offers = [
 export default function OffersPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
 
       <section className="relative pt-40 pb-20 overflow-hidden bg-[#0a0f1a]">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)" }} />
         <div className="container px-6 md:px-12 mx-auto relative z-10">
           <div className="max-w-3xl">
             <h1 
-              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
+              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-playfair"
             >
               Exclusive <span className="text-primary italic">Offers</span>
             </h1>
@@ -59,7 +55,12 @@ export default function OffersPage() {
             {offers.map((offer, i) => (
               <div key={i} className="group relative bg-white border border-border rounded-[3rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
                 <div className="relative h-64 overflow-hidden">
-                  <img src={offer.image} alt={offer.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <Image 
+                    src={offer.image} 
+                    alt={offer.title} 
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                  />
                   <div className="absolute top-6 left-6">
                     <span className="px-5 py-2 rounded-full bg-primary text-white font-black text-xs uppercase tracking-widest shadow-xl">
                       {offer.discount}
@@ -93,7 +94,6 @@ export default function OffersPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

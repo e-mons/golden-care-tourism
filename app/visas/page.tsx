@@ -1,5 +1,6 @@
 import { VisaForm } from "./visa-form";
-import { ShieldCheck, Clock, CheckCircle2, Info } from "lucide-react";
+import { ShieldCheck, Clock, Info } from "lucide-react";
+import Image from "next/image";
 export default function VisasPage() {
   return (
     <main className="bg-background min-h-screen">
@@ -8,10 +9,12 @@ export default function VisasPage() {
       {/* Premium Header */}
       <div className="relative py-32 overflow-hidden flex items-center justify-center text-center">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1544971587-b842c27f8e14?auto=format&fit=crop&q=80&w=2000" 
             alt="Abu Dhabi" 
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
         </div>

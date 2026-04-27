@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { Plane, Menu, UserCircle } from "lucide-react";
+import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -14,11 +15,15 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -28,13 +33,25 @@ export default function Navbar() {
   
   const navLinks = [
     { name: "Home", href: "/" },
+    { name: "Flights", href: "/flights" },
     { name: "Tours", href: "/tours" },
     { name: "Visa Services", href: "/visas" },
     { name: "About Us", href: "/about" },
   ];
 
-  // Pages that should always have a solid/white background navbar
-  const isLightPage = pathname === "/login" || pathname === "/signup" || pathname === "/forgot-password" || pathname === "/reset-password" || pathname.startsWith("/dashboard") || pathname.startsWith("/admin");
+  // Pages that should always have a solid/white background navbar (dark text/logo)
+  const isLightPage = 
+    pathname.startsWith("/login") || 
+    pathname.startsWith("/signup") || 
+    pathname.startsWith("/forgot-password") || 
+    pathname.startsWith("/reset-password") ||
+    pathname.startsWith("/privacy") || 
+    pathname.startsWith("/terms") || 
+    pathname.startsWith("/faq") || 
+    pathname.startsWith("/sitemap") || 
+    pathname.startsWith("/success") ||
+    pathname.startsWith("/dashboard") || 
+    pathname.startsWith("/admin");
   const showSolid = safeIsScrolled || isLightPage;
 
   return (
@@ -47,11 +64,13 @@ export default function Navbar() {
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center group relative z-10">
           <div className="relative h-10 md:h-12 w-36 md:w-48 transition-all duration-500 ease-out group-hover:scale-[1.03] will-change-transform transform-gpu">
-            <img 
+            <Image 
               src="/images/logo.png" 
               alt="Golden Care Tourism" 
+              fill
+              priority
               className={cn(
-                "w-full h-full object-contain transition-all duration-500",
+                "object-contain transition-all duration-500",
                 showSolid ? "brightness-100" : "brightness-0 invert opacity-90 group-hover:opacity-100"
               )}
             />
@@ -110,21 +129,19 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <Sheet>
-            <SheetTrigger
-              render={
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={cn(
-                    "md:hidden transition-colors duration-300 rounded-full h-10 w-10",
-                    showSolid ? "text-foreground bg-primary/5 hover:bg-primary/10" : "text-white bg-white/10 hover:bg-white/20"
-                  )} 
-                >
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Toggle Menu</span>
-                </Button>
-              }
-            />
+            <SheetTrigger render={
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className={cn(
+                  "md:hidden transition-colors duration-300 rounded-full h-10 w-10",
+                  showSolid ? "text-foreground bg-primary/5 hover:bg-primary/10" : "text-white bg-white/10 hover:bg-white/20"
+                )} 
+              >
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            } />
             <SheetContent side="right" className="w-[320px] sm:w-[400px] rounded-l-[2.5rem] bg-card/95 backdrop-blur-3xl border-l border-border/50 shadow-2xl p-8 flex flex-col">
               <div className="flex items-center space-x-3 mb-10 mt-6">
                 <div className="bg-primary/10 h-10 w-10 rounded-2xl flex items-center justify-center text-primary shadow-inner border border-primary/20">

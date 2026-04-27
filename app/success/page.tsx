@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckCircle2, Ticket, Calendar, ArrowRight, Download } from "lucide-react";
+import { CheckCircle2, Ticket, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 function SuccessContent() {
@@ -34,7 +34,7 @@ function SuccessContent() {
 
         <h1 className="text-4xl font-bold tracking-tight mb-4">Payment Successful!</h1>
         <p className="text-muted-foreground text-lg mb-12">
-          Your luxury experience is now secured. We've sent the confirmation and details to your email.
+          Your luxury experience is now secured. We&apos;ve sent the confirmation and details to your email.
         </p>
 
         <div className="bg-muted/30 border border-border/50 rounded-3xl p-8 mb-12 text-left space-y-6">

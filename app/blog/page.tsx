@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { ChevronRight, Calendar, User, MessageCircle, Clock, Search, Tag } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 const posts = [
   {
@@ -54,7 +52,6 @@ const posts = [
 export default function BlogPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       
       {/* Hero Section */}
       <section className="relative pt-40 pb-20 overflow-hidden bg-[#0a0f1a]">
@@ -195,7 +192,6 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

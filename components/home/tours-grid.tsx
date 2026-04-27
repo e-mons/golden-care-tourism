@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, Clock, MapPin, ArrowRight, Heart, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const tours = [
   {
@@ -141,7 +142,7 @@ export default function ToursShowcase() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
         >
           <AnimatePresence mode="popLayout">
-            {filteredTours.map((tour, index) => (
+            {filteredTours.map((tour) => (
               <motion.div
                 key={tour.id}
                 layout
@@ -153,10 +154,11 @@ export default function ToursShowcase() {
               >
                 {/* Image Section */}
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <img 
+                  <Image 
                     src={tour.image} 
                     alt={tour.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
                   
                   {/* Badges */}

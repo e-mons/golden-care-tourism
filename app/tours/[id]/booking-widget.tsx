@@ -6,22 +6,45 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Users, Calendar as CalendarIcon, Clock, ShieldCheck, ArrowRight, Zap } from "lucide-react";
 import { createCheckoutSession } from "@/app/actions/checkout";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-export default function BookingWidget({ tour, slots, addons }: any) {
+interface Tour {
+  id: string;
+  base_price: string | number;
+}
+
+interface Slot {
+  id: string;
+  start_time: string;
+  price_modifier: string | number;
+}
+
+interface Addon {
+  id: string;
+  title: string;
+  price: string | number;
+}
+
+interface BookingWidgetProps {
+  tour: Tour;
+  slots: Slot[];
+  addons: Addon[];
+}
+
+export default function BookingWidget({ tour, slots, addons }: BookingWidgetProps) {
   const [selectedSlotId, setSelectedSlotId] = useState<string>("");
   const [guestsCount, setGuestsCount] = useState<string>("1");
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const selectedSlot = useMemo(() => slots.find((s: any) => s.id === selectedSlotId), [selectedSlotId, slots]);
+  const selectedSlot = useMemo(() => slots.find((s) => s.id === selectedSlotId), [selectedSlotId, slots]);
   
   const basePrice = Number(tour.base_price);
   const priceModifier = selectedSlot ? Number(selectedSlot.price_modifier) : 0;
   const currentTourPrice = basePrice + priceModifier;
   
   const addonsTotal = selectedAddons.reduce((sum, addonId) => {
-    const addon = addons.find((a: any) => a.id === addonId);
+    const addon = addons.find((a) => a.id === addonId);
     return sum + (addon ? Number(addon.price) : 0);
   }, 0);
 
@@ -83,10 +106,11 @@ export default function BookingWidget({ tour, slots, addons }: any) {
             </SelectTrigger>
             <SelectContent className="rounded-2xl border-border/50">
               {slots.length === 0 && <SelectItem value="none" disabled>No availability</SelectItem>}
-              {slots.map((slot: any) => {
+              {slots.map((slot) => {
                 const date = new Date(slot.start_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 const time = new Date(slot.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                const modifierText = slot.price_modifier > 0 ? ` (+AED ${slot.price_modifier})` : "";
+                const modifierValue = Number(slot.price_modifier);
+                const modifierText = modifierValue > 0 ? ` (+AED ${modifierValue})` : "";
                 return (
                   <SelectItem key={slot.id} value={slot.id} className="py-3">
                     {date} at {time} {modifierText}
@@ -129,7 +153,7 @@ export default function BookingWidget({ tour, slots, addons }: any) {
               Popular Add-ons
             </Label>
             <div className="space-y-3">
-              {addons.map((addon: any) => {
+              {addons.map((addon) => {
                 const isSelected = selectedAddons.includes(addon.id);
                 return (
                   <button

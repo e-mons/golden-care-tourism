@@ -1,6 +1,4 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 const faqs = [
   {
@@ -28,7 +26,6 @@ const faqs = [
 export default function FAQPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       <section className="pt-40 pb-24">
         <div className="container px-6 md:px-12 mx-auto max-w-3xl">
           <h1 
@@ -52,7 +49,6 @@ export default function FAQPage() {
           </Accordion>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }

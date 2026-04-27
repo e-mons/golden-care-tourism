@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Plane, Hotel, Ticket, ArrowRight, Zap, Check, Sparkles } from "lucide-react";
+import { Plane, Hotel, ArrowRight, Zap, Check, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const bundles = [
   {
@@ -111,10 +111,11 @@ export default function BundleOffers() {
             >
               {/* Image */}
               <div className="relative h-[260px] overflow-hidden">
-                <img
+                <Image
                   src={bundle.image}
                   alt={bundle.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-[#0a0f1a]/40 to-transparent" />
 

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 const sections = [
   {
@@ -44,7 +42,6 @@ const sections = [
 export default function SitemapPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar />
       <section className="pt-40 pb-24">
         <div className="container px-6 md:px-12 mx-auto">
           <h1 
@@ -79,7 +76,6 @@ export default function SitemapPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }
